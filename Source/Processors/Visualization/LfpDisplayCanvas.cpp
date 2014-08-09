@@ -145,7 +145,7 @@ LfpDisplayCanvas::LfpDisplayCanvas(LfpDisplayNode* processor_) :
 	drawMethodButton->setToggleState(false, sendNotification);
 	addAndMakeVisible(drawMethodButton);
 
-	//button for pausing the diaplsy - works by skipping buffer updates. This way scrolling etc still works
+	//button for pausing the display - works by skipping buffer updates. This way scrolling etc still works
 	pauseButton = new UtilityButton("Pause", Font("Small Text", 13, Font::plain));
 	pauseButton->setRadius(5.0f);
 	pauseButton->setEnabledState(true);
