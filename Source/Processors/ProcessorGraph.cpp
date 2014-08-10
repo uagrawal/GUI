@@ -47,6 +47,7 @@
 #include "FPGAOutput.h"
 #include "PulsePalOutput.h"
 #include "SerialInput.h"
+#include "JuliaProcessor.h"
 #include "Utilities/RecordControl.h"
 #include "Utilities/Splitter.h"
 #include "Utilities/Merger.h"
@@ -562,7 +563,11 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
             std::cout << "Creating a new channel mapping node." << std::endl;
             processor = new ChannelMappingNode();
         }
-
+        else if (subProcessorType.equalsIgnoreCase("Julia Processor"))
+        {
+            std::cout << "Creating a new Julia processor." << std::endl;
+            processor = new JuliaProcessor();
+        }
         sendActionMessage("New filter node created.");
 
     }

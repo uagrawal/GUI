@@ -68,6 +68,7 @@ ProcessorList::ProcessorList()
     //filters->addSubItem(new ProcessorListItem("Digital Ref"));
     filters->addSubItem(new ProcessorListItem("Channel Map"));
     //filters->addSubItem(new ProcessorListItem("Eye Tracking"));
+    filters->addSubItem(new ProcessorListItem("Julia Processor"));
 
 
     ProcessorListItem* sinks = new ProcessorListItem("Sinks");
