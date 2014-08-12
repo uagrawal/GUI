@@ -57,6 +57,7 @@ public:
 private:
 
     ScopedPointer<UtilityButton> fileButton;
+    ScopedPointer<UtilityButton> reloadFileButton;
     ScopedPointer<Label> fileNameLabel;
 
     JuliaProcessor* juliaProcessor;

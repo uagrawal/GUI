@@ -39,7 +39,12 @@ JuliaProcessor::JuliaProcessor()
     jl_init("/home/jvoigts/julia/usr/bin");
     JL_SET_STACK_BASE;
 
-    jl_eval_string("include(\"juliaProcessor.jl\")"); // this runs the funciton definition in the file
+    // run include("FILENAME") in julia initializes a function object in julia
+    // This needs to contain a function myprocess
+    // later we'll just call myprocess() passing it the current data buffer and events
+    jl_eval_string("include(\"juliaProcessor.jl\")"); // this runs the function definition in the file
+
+    filePath="juliaProcessor.jl";
 
     //jl_eval_string("reload(\"juliaProcessor.jl\")"); // this runs the funciton definition in the file
 
@@ -86,11 +91,42 @@ void JuliaProcessor::setParameter(int parameterIndex, float newValue)
 
 void JuliaProcessor::setFile(String fullpath)
 {
-
     filePath = fullpath;
 
-  //  const char* path = filePath.getCharPointer();
+    //juliaString[1024]=""; // allocate empty string for init cmd
+    //sprintf( juliaString, "include(\"%s\")", filePath );
+    //jl_eval_string(juliaString); // this runs the function definition in the file
 
+  //  const char* path = filePath.getCharPointer();
+}
+
+void JuliaProcessor::reloadFile()
+{
+
+    
+
+    //jl_exit(0);
+    //jl_init("/home/jvoigts/julia/usr/bin");
+    //JL_SET_STACK_BASE;
+
+    String juliaString="reload(\""; 
+    //sprintf( juliaString, "reload(\"%s\")", filePath);
+    juliaString+=filePath;
+    juliaString+="\")";
+    
+    int nchars = juliaString.length();
+    printf("got %d chars\n", nchars);    
+
+    char jstr[nchars];
+    strncpy(jstr, juliaString.getCharPointer(), nchars);
+    jstr[nchars]='\0';
+
+    //char *jstr = (char)juliaString.toUTF8();
+
+    printf("executing julia cmd: %s\n", jstr);
+
+    jl_eval_string(jstr); // this runs the function definition in the file
+    
 }
 
 
@@ -112,8 +148,11 @@ void JuliaProcessor::process(AudioSampleBuffer& buffer,
     	for (int j = 0; j < nSamples; j++)
     	{
     		jl_value_t* argument = jl_box_float64((float)buffer.getSample(i,j));
+
     		//jl_value_t* argument = jl_box_float64(2.0);
     		jl_value_t* ret = jl_call1(func, argument);
+            JL_GC_PUSH2(&argument,&ret);
+
     		double j_out=0;
     		if (jl_is_float64(ret)) {
     			j_out= jl_unbox_float64(ret);
@@ -121,7 +160,9 @@ void JuliaProcessor::process(AudioSampleBuffer& buffer,
 
 			if (jl_exception_occurred())
 			    printf("%s \n", jl_typeof_str(jl_exception_occurred()));
-
+            
+            JL_GC_POP();
+            
     		buffer.setSample(i,j,j_out); //ch, sample,val
     	}
     }

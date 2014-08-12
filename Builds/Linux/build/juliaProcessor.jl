@@ -1,7 +1,8 @@
 function myprocess(data)
-	if data>0
-		return 200*abs(cos(data/100))
+	return sqrt(abs(data))*10
+	if data>-1000
+		return 200*abs(cos(data/10))
 	else
-		return 200*(cos(data))
+		return 200*abs(cos(data/10))
 	end
 end

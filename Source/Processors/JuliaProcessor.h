@@ -60,7 +60,7 @@ public:
     {
         return true;
     }
-    
+
     /** Determines whether the processor is treated as a source. */
     bool isSource()
     {
@@ -95,6 +95,8 @@ public:
     void setFile(String fullpath);
     String getFile();
 
+    void reloadFile();
+
     void saveCustomParametersToXml(XmlElement* parentElement);
     void loadCustomParametersFromXml();
 
@@ -102,6 +104,7 @@ public:
 private:
 
     String filePath;
+    //char jstr;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JuliaProcessor);
 

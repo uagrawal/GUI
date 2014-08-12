@@ -37,16 +37,20 @@ JuliaProcessorEditor::JuliaProcessorEditor(GenericProcessor* parentNode, bool us
 
     fileButton = new UtilityButton("Select file",Font("Small Text", 13, Font::plain));
     fileButton->addListener(this);
-    fileButton->setBounds(30,30,120,25);
+    fileButton->setBounds(10,30,100,25);
     addAndMakeVisible(fileButton);
 
+	reloadFileButton = new UtilityButton("refresh",Font("Small Text", 13, Font::plain));
+    reloadFileButton->addListener(this);
+    reloadFileButton->setBounds(100+10,30,60,25);
+    addAndMakeVisible(reloadFileButton);
 
 
     fileNameLabel = new Label("FileNameLabel", "No file selected.");
-    fileNameLabel->setBounds(20,60,140,25);
+    fileNameLabel->setBounds(10,50,140,25);
     addAndMakeVisible(fileNameLabel);
 
-    desiredWidth = 180;
+    desiredWidth = 200;
 
     setEnabledState(false);
 
@@ -94,6 +98,10 @@ void JuliaProcessorEditor::buttonEvent(Button* button)
 
                 // fileNameLabel->setText(fileToRead.getFileName(),false);
             }
+        } 
+        if (button == reloadFileButton)
+        {
+			juliaProcessor->reloadFile();
         }
 
     }
