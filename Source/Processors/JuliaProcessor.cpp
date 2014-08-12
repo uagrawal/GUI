@@ -37,6 +37,9 @@ JuliaProcessor::JuliaProcessor()
     jl_init("/home/jvoigts/julia/usr/bin");
     JL_SET_STACK_BASE;
 
+    jl_eval_string("include(\"juliaProcessor.jl\")"); // this runs the funciton definition in the file
+    // this should allow the user to select a file
+
 		/*
         jl_function_t *func = jl_get_function(jl_base_module, "sqrt");
         jl_value_t* argument = jl_box_float64(2.0);
@@ -75,7 +78,7 @@ void JuliaProcessor::process(AudioSampleBuffer& buffer,
                                int& nSamples)
 {
 
-	jl_function_t *func = jl_get_function(jl_base_module, "sin");    
+	jl_function_t *func = jl_get_function(jl_main_module, "myprocess");    
 
 
 	for (int i = 2; i < buffer.getNumChannels(); i++)
