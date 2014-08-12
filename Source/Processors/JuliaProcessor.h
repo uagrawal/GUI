@@ -54,6 +54,13 @@ public:
     /** The class destructor, used to deallocate memory */
     ~JuliaProcessor();
 
+    AudioProcessorEditor* createEditor();
+
+    bool hasEditor() const
+    {
+        return true;
+    }
+    
     /** Determines whether the processor is treated as a source. */
     bool isSource()
     {
@@ -85,14 +92,16 @@ public:
         other way, the application will crash.  */
     void setParameter(int parameterIndex, float newValue);
 
+    void setFile(String fullpath);
+    String getFile();
+
+    void saveCustomParametersToXml(XmlElement* parentElement);
+    void loadCustomParametersFromXml();
+
+
 private:
 
-    // private members and methods go here
-    //
-    // e.g.:
-    //
-    // float threshold;
-    // bool state;
+    String filePath;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JuliaProcessor);
 

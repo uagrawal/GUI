@@ -23,9 +23,11 @@
 */
 
 
+
+#include "JuliaProcessor.h"
+#include "Editors/JuliaProcessorEditor.h"
 #include <stdio.h>
 #include <julia.h>
-#include "JuliaProcessor.h"
 
 
 JuliaProcessor::JuliaProcessor()
@@ -38,6 +40,9 @@ JuliaProcessor::JuliaProcessor()
     JL_SET_STACK_BASE;
 
     jl_eval_string("include(\"juliaProcessor.jl\")"); // this runs the funciton definition in the file
+
+    //jl_eval_string("reload(\"juliaProcessor.jl\")"); // this runs the funciton definition in the file
+
     // this should allow the user to select a file
 
 		/*
@@ -55,10 +60,16 @@ JuliaProcessor::JuliaProcessor()
 
 JuliaProcessor::~JuliaProcessor()
 {
-
+    jl_exit(0);
 }
 
+AudioProcessorEditor* JuliaProcessor::createEditor()
+{
+    editor = new JuliaProcessorEditor(this, true);
 
+    return editor;
+
+}
 
 void JuliaProcessor::setParameter(int parameterIndex, float newValue)
 {
@@ -71,6 +82,21 @@ void JuliaProcessor::setParameter(int parameterIndex, float newValue)
 
     //std::cout << float(p[0]) << std::endl;
     editor->updateParameterButtons(parameterIndex);
+}
+
+void JuliaProcessor::setFile(String fullpath)
+{
+
+    filePath = fullpath;
+
+  //  const char* path = filePath.getCharPointer();
+
+}
+
+
+String JuliaProcessor::getFile()
+{
+    return filePath;
 }
 
 void JuliaProcessor::process(AudioSampleBuffer& buffer,
@@ -99,4 +125,34 @@ void JuliaProcessor::process(AudioSampleBuffer& buffer,
     		buffer.setSample(i,j,j_out); //ch, sample,val
     	}
     }
+}
+
+
+void JuliaProcessor::saveCustomParametersToXml(XmlElement* parentElement)
+{
+
+    XmlElement* childNode = parentElement->createNewChildElement("FILENAME");
+    childNode->setAttribute("path", getFile());
+
+}
+
+void JuliaProcessor::loadCustomParametersFromXml()
+{
+
+    if (parametersAsXml != nullptr)
+    {
+        // use parametersAsXml to restore state
+
+        forEachXmlChildElement(*parametersAsXml, xmlNode)
+        {
+            if (xmlNode->hasTagName("FILENAME"))
+            {
+                String filepath = xmlNode->getStringAttribute("path");
+                JuliaProcessorEditor* fre = (JuliaProcessorEditor*) getEditor();
+                fre->setFile(filepath);
+
+            }
+        }
+    }
+
 }
