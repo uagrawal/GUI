@@ -502,6 +502,9 @@
     <ClCompile Include="..\..\Source\Processors\EventNode.cpp">
       <Filter>open-ephys\Source\Processors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Processors\Editors\JuliaProcessorEditor.cpp">
+      <Filter>open-ephys\Source\Processors\Editors</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Processors\Editors\LfpTriggeredAverageEditor.cpp">
       <Filter>open-ephys\Source\Processors\Editors</Filter>
     </ClCompile>
@@ -2078,6 +2081,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Processors\EventNode.h">
       <Filter>open-ephys\Source\Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Processors\Editors\JuliaProcessorEditor.h">
+      <Filter>open-ephys\Source\Processors\Editors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Processors\Editors\LfpTriggeredAverageEditor.h">
       <Filter>open-ephys\Source\Processors\Editors</Filter>

@@ -377,6 +377,10 @@
         <FILE id="hGnGAjh" name="EventNode.cpp" compile="1" resource="0" file="Source/Processors/EventNode.cpp"/>
         <FILE id="dUtRN6" name="EventNode.h" compile="0" resource="0" file="Source/Processors/EventNode.h"/>
         <GROUP id="AqvwO6w" name="Editors">
+          <FILE id="KtzRDh" name="JuliaProcessorEditor.cpp" compile="1" resource="0"
+                file="Source/Processors/Editors/JuliaProcessorEditor.cpp"/>
+          <FILE id="V6nboj" name="JuliaProcessorEditor.h" compile="0" resource="0"
+                file="Source/Processors/Editors/JuliaProcessorEditor.h"/>
           <FILE id="jQo6Ff" name="LfpTriggeredAverageEditor.cpp" compile="1"
                 resource="0" file="Source/Processors/Editors/LfpTriggeredAverageEditor.cpp"/>
           <FILE id="RaQC38" name="LfpTriggeredAverageEditor.h" compile="0" resource="0"
