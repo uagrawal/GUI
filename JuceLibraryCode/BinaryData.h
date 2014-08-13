@@ -63,6 +63,12 @@ namespace BinaryData
     extern const char*   silkscreen_ttf;
     const int            silkscreen_ttfSize = 18336;
 
+    extern const char*   JuliaIconActive_png;
+    const int            JuliaIconActive_pngSize = 2067;
+
+    extern const char*   JuliaIconInactive_png;
+    const int            JuliaIconInactive_pngSize = 2201;
+
     extern const char*   ArduinoIcon_png;
     const int            ArduinoIcon_pngSize = 56888;
 
@@ -199,7 +205,7 @@ namespace BinaryData
     extern const char* namedResourceList[];
 
     // Number of elements in the namedResourceList array.
-    const int namedResourceListSize = 62;
+    const int namedResourceListSize = 64;
 
     // If you provide the name of one of the binary resource variables above, this function will
     // return the corresponding data and its size (or a null pointer if the name isn't found).

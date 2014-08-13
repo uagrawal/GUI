@@ -141,6 +141,10 @@
       </GROUP>
       <GROUP id="W2L6BdA" name="Images">
         <GROUP id="Gu1BsKu" name="Icons">
+          <FILE id="tiWaZ3" name="JuliaIconActive.png" compile="0" resource="1"
+                file="Resources/Images/Icons/JuliaIconActive.png"/>
+          <FILE id="MGQ9O5" name="JuliaIconInactive.png" compile="0" resource="1"
+                file="Resources/Images/Icons/JuliaIconInactive.png"/>
           <FILE id="Ke1Tihu" name="ArduinoIcon.png" compile="0" resource="1"
                 file="Resources/Images/Icons/ArduinoIcon.png"/>
           <FILE id="zPy0mgT" name="OpenEphysBoardLogoBlack.png" compile="0" resource="1"

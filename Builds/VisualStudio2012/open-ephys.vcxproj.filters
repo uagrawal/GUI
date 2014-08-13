@@ -3671,6 +3671,12 @@
     <None Include="..\..\Resources\Fonts\unibody-8.otf">
       <Filter>open-ephys\Resources\Fonts</Filter>
     </None>
+    <None Include="..\..\Resources\Images\Icons\JuliaIconActive.png">
+      <Filter>open-ephys\Resources\Images\Icons</Filter>
+    </None>
+    <None Include="..\..\Resources\Images\Icons\JuliaIconInactive.png">
+      <Filter>open-ephys\Resources\Images\Icons</Filter>
+    </None>
     <None Include="..\..\Resources\Images\Icons\ArduinoIcon.png">
       <Filter>open-ephys\Resources\Images\Icons</Filter>
     </None>
