@@ -27,7 +27,9 @@
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
 #include "GenericEditor.h"
+#include "ImageIcon.h"
 
+class ImageIcon;
 class JuliaProcessor;
 
 
@@ -53,6 +55,8 @@ public:
     void saveEditorParameters(XmlElement*);
 
     void loadEditorParameters(XmlElement*);
+
+	ImageIcon* icon;
 
 private:
 

@@ -104,7 +104,9 @@ public:
 private:
 
     String filePath;
-    //char jstr;
+    int hasJuliaInstance; // funcitons as enabled switch
+
+    void run_julia_string(String juliaString);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(JuliaProcessor);
 

@@ -31,24 +31,36 @@ JuliaProcessorEditor::JuliaProcessorEditor(GenericProcessor* parentNode, bool us
 
 {
 
-    juliaProcessor = (JuliaProcessor*) parentNode;
+    //JuliaProcessor* juliaProcessor = (JuliaProcessor*) getProcessor();
+	juliaProcessor = (JuliaProcessor*) parentNode;
 
     lastFilePath = File::getCurrentWorkingDirectory();
 
     fileButton = new UtilityButton("Select file",Font("Small Text", 13, Font::plain));
     fileButton->addListener(this);
-    fileButton->setBounds(10,30,100,25);
+    fileButton->setBounds(10,85,100,25);
     addAndMakeVisible(fileButton);
 
 	reloadFileButton = new UtilityButton("refresh",Font("Small Text", 13, Font::plain));
     reloadFileButton->addListener(this);
-    reloadFileButton->setBounds(100+10,30,60,25);
+    reloadFileButton->setBounds(100+10,85,60,25);
     addAndMakeVisible(reloadFileButton);
 
 
     fileNameLabel = new Label("FileNameLabel", "No file selected.");
-    fileNameLabel->setBounds(10,50,140,25);
+    fileNameLabel->setBounds(10,85+20,140,25);
     addAndMakeVisible(fileNameLabel);
+
+
+    Image im;
+    im = ImageCache::getFromMemory(BinaryData::JuliaIconActive_png,
+                                   BinaryData::JuliaIconActive_pngSize);
+
+    icon = new ImageIcon(im);
+    addAndMakeVisible(icon);
+    icon->setBounds(15,25,61,54);
+
+    icon->setOpacity(0.3f);
 
     desiredWidth = 200;
 
@@ -58,7 +70,7 @@ JuliaProcessorEditor::JuliaProcessorEditor(GenericProcessor* parentNode, bool us
 
 JuliaProcessorEditor::~JuliaProcessorEditor()
 {
-
+	//deleteAllChildren();
 }
 
 void JuliaProcessorEditor::setFile(String file)
@@ -69,7 +81,8 @@ void JuliaProcessorEditor::setFile(String file)
     juliaProcessor->setFile(fileToRead.getFullPathName());
     fileNameLabel->setText(fileToRead.getFileName(), dontSendNotification);
 
-    setEnabledState(true);
+    //setEnabledState(true);
+    icon->setOpacity(1.0f); // tie this to hasJuliaInstance instead of just setting it!
 
     repaint();
 }
